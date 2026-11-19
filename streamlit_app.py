@@ -5,6 +5,9 @@ import os
 #from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 
+#DEBUG: show the snowflakes secrects file, has this been picked up ok ?:
+st.write(st.secrets)
+
 #from snowflake.snowpark.context import get_active_session
 #Connection required for streamlit app
 cnx = st.connection("snowflake")
