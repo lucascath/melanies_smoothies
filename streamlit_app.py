@@ -1,6 +1,7 @@
 # Import python packages
 import streamlit as st
 import os
+import requests  
 
 #from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
@@ -8,15 +9,6 @@ from snowflake.snowpark.functions import col
 #DEBUG: show the snowflakes secrects file, has this been picked up ok ?:
 st.write(st.secrets)
 
-#New section to display smoothiefroot nutrition info
-import requests  
-smoothiefroot_response = requests.get(
-"https://my.smoothiefroot.com/api/fruit/watermelon"
-) 
-#st.text(smoothiefroot_response)
-st.write(smoothiefroot_response.json())
-#Put the response in a streamlit dataframe.
-sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width= True)
 
 #from snowflake.snowpark.context import get_active_session
 #Connection required for streamlit app
@@ -53,6 +45,11 @@ if ingredients_list:
 
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen +' '
+        #New section to display smoothiefroot nutrition info
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon") 
+        #st.write(smoothiefroot_response.json())
+        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width= True)
+        
 
     #st.write(ingredients_string)
 
