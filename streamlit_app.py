@@ -10,7 +10,7 @@ st.write(st.secrets)
 
 #New section to display smoothiefroot nutrition info
 import requests  
-requests.get(
+smoothiefroot_response = requests.get(
 "https://my.smoothiefroot.com/api/fruit/watermelon"
 ) 
 st.text(smoothiefroot_response)
